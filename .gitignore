@@ -12,6 +12,3 @@ node_modules
 # OS metadata
 .DS_Store
 Thumbs.db
-
-# Ignore built ts files
-dist/**/*
