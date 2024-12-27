@@ -1,37 +1,21 @@
 import { app } from "./app";
 
 const port = app.get("port");
+let server: any;
 
-const server = app.listen(port, onListening);
-// server.on("error", onError);
 
-// function onError(error: NodeJS.ErrnoException) {
-//     if (error.syscall !== "listen") {
-//         throw error;
-//     }
+try {
+    server = app.listen(port, onListening);
 
-//     const bind = typeof port === "string" ? `Pipe ${port}` : `Port ${port}`;
+    function onListening() {
+        const addr = server.address();
+        const bind =
+            typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+        console.log(`Listening on ${bind}`);
+    }
 
-//     // handle specific listen errors with friendly messages
-//     switch (error.code) {
-//         case "EACCES":
-//             console.error(`${bind} requires elevated privileges`);
-//             process.exit(1);
-//             break;
-//         case "EADDRINUSE":
-//             console.error(`${bind} is already in use`);
-//             process.exit(1);
-//             break;
-//         default:
-//             throw error;
-//     }
-// }
+} catch (error) {
 
-function onListening() {
-    const addr = server.address();
-    const bind =
-        typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
-    console.log(`Listening on ${bind}`);
 }
 
 export default server;
