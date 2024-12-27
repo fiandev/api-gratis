@@ -2,10 +2,6 @@
     "buildCommand": "npm run build && npm run start",
     "builds": [
         {
-            "src": "./dist/server.js",
-            "use": "@vercel/node"
-        },
-        {
             "src": "public/**",
             "use": "@vercel/static"
         }
